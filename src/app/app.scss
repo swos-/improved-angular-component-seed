@@ -1,0 +1,12 @@
+$primaryColor: #F6F6F6;
+$column: #2B2B2B;
+$primaryFont: #fff;
+
+body {
+    background-color: $primaryColor;
+}
+
+.body-column {
+    background-color: $column;
+    color: $primaryFont;
+}

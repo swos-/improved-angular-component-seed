@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import templateCache from 'gulp-angular-templatecache';
+import sass from 'gulp-sass';
 import browserify from 'browserify';
 import concat from 'gulp-concat';
 import gulpif from 'gulp-if';
@@ -23,7 +24,7 @@ const paths = {
     dist: './dist/',
     js: './dist/js/',
     index: 'src/index.html',
-    styles: [],
+    styles: [`${root}/**/*.scss`],
     scripts: [
         `${root}/**/*.js`
     ],
@@ -105,7 +106,7 @@ gulp.task('styles', () => {
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
 
-gulp.task('default', ['vendor:scripts', 'bundle', 'html', 'vendor:css', 'watch'], () => {
+gulp.task('default', ['vendor:scripts', 'bundle', 'html', 'vendor:css', 'watch', 'styles'], () => {
     browserSync({
         'server': paths.dist
     });
@@ -126,5 +127,9 @@ gulp.task('watch', () => {
 
     gulp.watch(paths.styles, () => {
         runSequence('styles', 'reload');
+    });
+
+    gulp.watch(paths.templates, () => {
+        runSequence('templates', 'reload');
     });
 });
