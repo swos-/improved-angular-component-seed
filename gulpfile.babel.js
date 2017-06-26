@@ -102,7 +102,9 @@ gulp.task('vendor:css', () => {
 
 gulp.task('styles', () => {
   return gulp.src(paths.styles)
-    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(sass({outputStyle: 'compressed'})
+    .on('error', sass.logError))
+    .pipe(concat('app.css'))
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
 

@@ -1,7 +1,6 @@
 class NavController {
     constructor() {
-        this.title = 'NavController Title';
-        console.log('NavController constructor');
+        this.title = 'Angular App';
     }
 }
 

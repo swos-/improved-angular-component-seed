@@ -1,6 +1,6 @@
 import { NavComponent } from './nav.component';
 
 export const NavModule = angular
-    .module('app.nav', [])
+    .module('app.common.nav', [])
     .component('appNav', NavComponent)
     .name;
