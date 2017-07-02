@@ -17,7 +17,7 @@ its package manager (npm) installed.  You can get them from [http://nodejs.org/]
 
 ### Clone improved-angular-component-seed
 
-Clone the improved-angular-component-seed repository using [git][git]:
+Clone the improved-angular-component-seed repository using git:
 
 ```
 git clone https://github.com/swos-/improved-angular-component-seed.git
