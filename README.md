@@ -1,5 +1,5 @@
 # improved-angular-component-seed — The improved seed for AngularJS apps
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.  This seed is inspired by Todd Motto's style guide [https://github.com/toddmotto/angularjs-styleguide].
+This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.  This seed is inspired by [Todd Motto's style guide](https://github.com/toddmotto/angularjs-styleguide).
 
 > As noted in the style guide, this is meant to capture 'Architecture, file structure, components, one-way dataflow, lifecycle hooks.'
 
@@ -33,7 +33,7 @@ git clone --depth=1 https://github.com/swos-/improved-angular-component-seed.git
 The `depth=1` tells git to only pull down one commit worth of historical data.
 
 ### Install Dependencies
-We install our development dependencies via `npm`, the [node package manager][npm].
+We install our development dependencies via `npm`, the [node package manager](https://www.npmjs.com/).
 
 Once you've cloned the project, run:
 ```
