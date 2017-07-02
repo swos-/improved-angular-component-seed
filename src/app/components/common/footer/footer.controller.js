@@ -1,6 +1,9 @@
 class FooterController {
-    constructor() {
-        this.footerText = 'Angular App Footer'
+    constructor(ItemsService) {
+        'ngInject';
+        this.ItemsService = ItemsService;
+        this.footerText = 'Angular App Footer';
+        this.items = this.ItemsService.items.data;
     }
 }
 

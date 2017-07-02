@@ -4,7 +4,6 @@ import sass from 'gulp-sass';
 import browserify from 'browserify';
 import concat from 'gulp-concat';
 import gulpif from 'gulp-if';
-import ngAnnotate from 'gulp-ng-annotate';
 import plumber from 'gulp-plumber';
 import sourcemaps from 'gulp-sourcemaps';
 import uglify from 'gulp-uglify';
@@ -14,6 +13,7 @@ import yargs from 'yargs';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import util from 'gulp-util';
+import ngAnnotate from 'gulp-ng-annotate';
 import ngHtml2Js from 'browserify-ng-html2js'; // https://github.com/javoire/browserify-ng-html2js#b-with-gulp
 import runSequence from 'run-sequence';
 
@@ -30,6 +30,13 @@ const paths = {
     ],
     css: [
         'bootstrap-css-only/css/bootstrap.min.css'
+    ],
+    fonts: [
+        'bootstrap-css-only/fonts/glyphicons-halflings-regular.eot',
+        'bootstrap-css-only/fonts/glyphicons-halflings-regular.svg',
+        'bootstrap-css-only/fonts/glyphicons-halflings-regular.ttf',
+        'bootstrap-css-only/fonts/glyphicons-halflings-regular.woff',
+        'bootstrap-css-only/fonts/glyphicons-halflings-regular.woff2'
     ],
     modules: [
         'angular/angular.js',
@@ -82,6 +89,7 @@ gulp.task('bundle', () => {
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(gulpif(!argv.prod, sourcemaps.init({ loadMaps: true })))
+        .pipe(ngAnnotate())
         .pipe(gulpif(argv.prod, uglify()))
         .on('error', util.log)
         .pipe(gulpif(!argv.prod, sourcemaps.write('./')))
@@ -100,6 +108,11 @@ gulp.task('vendor:css', () => {
     .pipe(gulp.dest(paths.dist + 'css/'))
 });
 
+gulp.task('vendor:fonts', () => {
+    return gulp.src(paths.fonts.map(item => 'node_modules/' + item))
+    .pipe(gulp.dest(paths.dist + 'fonts/'))
+})
+
 gulp.task('styles', () => {
   return gulp.src(paths.styles)
     .pipe(sass({outputStyle: 'compressed'})
@@ -108,7 +121,7 @@ gulp.task('styles', () => {
     .pipe(gulp.dest(paths.dist + 'css/'));
 });
 
-gulp.task('default', ['vendor:scripts', 'bundle', 'html', 'vendor:css', 'watch', 'styles'], () => {
+gulp.task('default', ['vendor:scripts', 'bundle', 'html', 'vendor:css', 'watch', 'styles', 'vendor:fonts'], () => {
     browserSync({
         'server': paths.dist
     });
@@ -124,7 +137,7 @@ gulp.task('watch', () => {
     });
 
     gulp.watch(paths.index, () => {
-        runSequence('html', 'reload');
+        runSequence('html', 'bundle', 'reload');
     });
 
     gulp.watch(paths.styles, () => {
@@ -132,6 +145,6 @@ gulp.task('watch', () => {
     });
 
     gulp.watch(paths.templates, () => {
-        runSequence('templates', 'reload');
+        runSequence('templates', 'bundle', 'reload');
     });
 });
