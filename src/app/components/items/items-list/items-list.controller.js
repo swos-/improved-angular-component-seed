@@ -1,6 +1,5 @@
 class ItemsListController {
     constructor() {
-        console.log('ItemsListController');
     }
 }
 

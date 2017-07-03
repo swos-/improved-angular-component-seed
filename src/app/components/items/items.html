@@ -8,6 +8,6 @@
         <items-form on-add-item="$ctrl.addItem($event)"></items-form>
     </div>
     <div class="col-md-6">
-        <items-list items="$ctrl.items"></items-list>
+        <items-list items="$ctrl.items" on-delete-item="$ctrl.deleteItem($event)"></items-list>
     </div>
 </div>

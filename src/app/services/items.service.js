@@ -13,6 +13,14 @@ export class ItemsService {
     }
 
     deleteItem(item) {
-        this.items.data.splice(item.id, 1);
+        this.deleteByValue(this.items.data, item.id);
+    }
+
+    deleteByValue(obj, val) {
+        for(var o in obj) {
+            if(obj[o].id == val) {
+                obj.splice(o, 1);
+            }
+        }
     }
 }

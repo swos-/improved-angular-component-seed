@@ -3,7 +3,8 @@ import ItemsListController from './items-list.controller';
 
 export const ItemsListComponent = {
     bindings: {
-        items: '<'
+        items: '<',
+        onDeleteItem: '&'
     },
     templateUrl,
     controller: ItemsListController
