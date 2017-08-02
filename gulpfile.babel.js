@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 import templateCache from 'gulp-angular-templatecache';
+import jsonServer from 'gulp-json-srv';
 import sass from 'gulp-sass';
 import browserify from 'browserify';
 import concat from 'gulp-concat';
@@ -17,10 +18,12 @@ import ngAnnotate from 'gulp-ng-annotate';
 import ngHtml2Js from 'browserify-ng-html2js'; // https://github.com/javoire/browserify-ng-html2js#b-with-gulp
 import runSequence from 'run-sequence';
 
+const server = jsonServer.create();
 const argv = yargs.argv;
 const root = 'src/app';
 
 const paths = {
+    api: 'data.json',
     dist: './dist/',
     js: './dist/js/',
     index: 'src/index.html',
@@ -129,6 +132,11 @@ gulp.task('default', ['vendor:scripts', 'bundle', 'html', 'vendor:css', 'watch',
 
 gulp.task('reload', () => {
     return browserSync.reload();
+});
+
+gulp.task('api', () => {
+    return gulp.src('data.json')
+        .pipe(server.pipe());
 });
 
 gulp.task('watch', () => {

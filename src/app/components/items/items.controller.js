@@ -2,6 +2,9 @@ class ItemsController {
     constructor(ItemsService) {
         'ngInject';
         this.ItemsService = ItemsService;
+    }
+
+    $onInit() {
         this.items = this.ItemsService.items.data;
     }
 

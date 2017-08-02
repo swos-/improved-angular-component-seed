@@ -1,5 +1,7 @@
 class ItemsFormController {
-    constructor() {
+    constructor(EventEmitter) {
+        'ngInject';
+        this.EventEmitter = EventEmitter;
         this.item = {};
     }
 
@@ -14,11 +16,7 @@ class ItemsFormController {
             return;
         }
 
-        this.onAddItem({
-            $event: {
-                item: this.item
-            }
-        });
+        this.onAddItem(this.EventEmitter({item: this.item}));
         this.item = {}
     }
 }
