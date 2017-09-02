@@ -1,26 +1,27 @@
-export class ItemsService {
-    constructor($http) {
-        'ngInject';
-        this.$http = $http;
-        this.items = { data: []};
-        this.counter = 0;
-    }
+export default class ItemsService {
+  constructor($http) {
+    'ngInject';
 
-    addItem(item) {
-        this.counter++;
-        item.id = this.counter;
-        this.items.data.push(item);
-    }
+    this.$http = $http;
+    this.items = { data: [] };
+    this.counter = 0;
+  }
 
-    deleteItem(item) {
-        this.deleteByValue(this.items.data, item.id);
-    }
+  addItem(item) {
+    this.counter++;
+    item.id = this.counter;
+    this.items.data.push(item);
+  }
 
-    deleteByValue(obj, val) {
-        for(var o in obj) {
-            if(obj[o].id == val) {
-                obj.splice(o, 1);
-            }
-        }
+  deleteItem(item) {
+    this.deleteByValue(this.items.data, item.id);
+  }
+
+  deleteByValue(obj, val) {
+    for (const o in obj) {
+      if (obj[o].id == val) {
+        obj.splice(o, 1);
+      }
     }
+  }
 }

@@ -1,7 +1,9 @@
 import { ItemsService } from './items.service';
 
-export const ServicesModule = angular
+const ServicesModule = angular
     .module('app.services', [
     ])
     .service('ItemsService', ItemsService)
     .name;
+
+export default ServicesModule;

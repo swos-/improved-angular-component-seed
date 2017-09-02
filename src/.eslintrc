@@ -1,0 +1,10 @@
+{
+  "extends": "eslint-config-airbnb-base",
+  "rules": {
+      "globals": {
+          "$": true,
+          "angular": true,
+          "document": true
+    }
+  }
+}
